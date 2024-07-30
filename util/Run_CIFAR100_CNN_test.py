@@ -1,4 +1,5 @@
 import sys
+sys.path.append('/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/src')
 import json
 import matplotlib.pyplot as plt
 import numpy as np
@@ -38,7 +39,7 @@ data_transforms = {
 #================================Test Data====================================================
 cifar100_subset_testset = cifar100_subset.CIFAR100Subset(
 subset=[1, 3, 6, 9, 11, 19, 20, 21, 23, 24, 33, 34, 36, 38, 43, 44, 45, 46, 48, 51, 53, 54, 56, 60, 61, 62, 63, 66, 68, 71],
-root='./data/CIFAR100',
+root='/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/data/CIFAR100',
 train=False,
 download=True,
 transform=data_transforms["test"])
@@ -72,7 +73,7 @@ if __name__ == '__main__':
     test_loader = torch.utils.data.DataLoader(cifar100_subset_testset, batch_size=batch_size,
                                             shuffle=False, num_workers=2)
     print()
-    cnn_model = torch.load('CIFAR100_CNN_trained.json')
+    cnn_model = torch.load('/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/saved_model/CIFAR100_CNN_trained.json')
     cnn_model.to(device)
     test(cnn_model)
 
@@ -85,7 +86,7 @@ if __name__ == '__main__':
 #     Plotting validation_cost, validation_accuracy, training_cost, training_accuracy
 #=========================================================================================
 num_epochs = 100 #=================Change this to number of epochs used in training
-f = open('CIFAR100_plot_data.json', "r")
+f = open('/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/saved_model/CIFAR100_plot_data.json', "r")
 [validation_cost, validation_accuracy, training_cost, training_accuracy] = json.load(f)
 f.close()
 
@@ -170,5 +171,5 @@ def plot_training_accuracy(training_accuracy, num_epochs,
     ax.set_title('Accuracy (%) on the CIFAR30 Training Data',fontweight='bold')
     plt.show()
 
-make_plots('CIFAR100_plot_data.json', num_epochs, training_cost_xmin, validation_accuracy_xmin,
+make_plots('/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/saved_model/CIFAR100_plot_data.json', num_epochs, training_cost_xmin, validation_accuracy_xmin,
            validation_cost_xmin,  training_accuracy_xmin, training_set_size)

@@ -1,4 +1,5 @@
 import sys
+sys.path.append(0,'/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/src')
 import torch
 from torch import nn
 import CIFAR100_CNN_Network
@@ -47,7 +48,7 @@ data_transforms = {
 print('====================== 30 Selected Classes ====================================')
 cifar100_subset_trainset = cifar100_subset.CIFAR100Subset(
     subset=[1, 3, 6, 9, 11, 19, 20, 21, 23, 24, 33, 34, 36, 38, 43, 44, 45, 46, 48, 51, 53, 54, 56, 60, 61, 62, 63, 66, 68, 71],
-    root='./data/CIFAR100',
+    root='/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/data/CIFAR100',
     train=True,
     download=True,
     transform=data_transforms["train"])
@@ -228,8 +229,8 @@ def train_save():
         print(f'Epoch [{epoch+1}/{num_epochs}]=======================================================================')
         print(f'Accuracy(train, validation):{round(training_accs,1),round(validation_accs,1)}%, Loss(train,validation):{round(training_loss,4), round(validation_loss,4)}')
         print()
-    torch.save(cnn_model, 'CIFAR100_CNN_trained.json') 
-    filename = 'CIFAR100_plot_data.json'
+    torch.save(cnn_model, '/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/saved_model/CIFAR100_CNN_trained.json') 
+    filename = '/Users/kachingasilwimba/Desktop/URSSI/CIFER100-Classifier/saved_model/CIFAR100_plot_data.json'
     f = open(filename, "w")
     json.dump([validation_cost, validation_accuracy, training_cost, training_accuracy], f)
     f.close() 
